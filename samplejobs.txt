@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Software Engineer (Backend)",
+    "location": "Bengaluru, India",
+    "language": "English",
+    "description": "Build REST APIs with Python and FastAPI. Work with PostgreSQL and Docker."
+  },
+  {
+    "id": 2,
+    "title": "Data Analyst",
+    "location": "Hyderabad, India",
+    "language": "English",
+    "description": "Analyze datasets, build dashboards, SQL queries, and present insights."
+  },
+  {
+    "id": 3,
+    "title": "Machine Learning Intern",
+    "location": "Remote, India",
+    "language": "English/Hindi",
+    "description": "Assist in model training, data preprocessing, and evaluation using scikit-learn."
+  },
+  {
+    "id": 4,
+    "title": "Frontend Developer (React)",
+    "location": "Pune, India",
+    "language": "English",
+    "description": "Develop UI components, integrate REST APIs, ensure responsive design."
+  },
+  {
+    "id": 5,
+    "title": "Customer Support Associate",
+    "location": "Mumbai, India",
+    "language": "Hindi/English",
+    "description": "Handle customer queries over chat and email; multilingual skills preferred."
+  },
+  {
+    "id": 6,
+    "title": "NLP Research Assistant",
+    "location": "Chennai, India",
+    "language": "English",
+    "description": "Work on text classification, NER, and multilingual corpora preparation."
+  }
+]

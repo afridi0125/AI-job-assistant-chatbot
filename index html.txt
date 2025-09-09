@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Multilingual Job Assistant — 20% Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; line-height: 1.4; }
+    section { margin-bottom: 24px; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+    label { display:block; margin:6px 0; }
+    input, select { padding:6px; margin-left:6px; }
+    button { margin-top:8px; padding:6px 10px; }
+    pre { background:#f7f7f7; padding:8px; border-radius:4px; white-space:pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>Multilingual Job Assistant — 20% Demo</h1>
+
+  <section>
+    <h2>Translate</h2>
+    <label>Text: <input id="t_text" value="hello software engineer resume" size="60"></label>
+    <label>Src:
+      <select id="t_src">
+        <option>en</option><option>hi</option><option>te</option>
+      </select>
+    </label>
+    <label>Tgt:
+      <select id="t_tgt">
+        <option>hi</option><option>te</option><option>en</option>
+      </select>
+    </label>
+    <button onclick="translateText()">Translate</button>
+    <pre id="t_out"></pre>
+  </section>
+
+  <section>
+    <h2>Recommend Jobs</h2>
+    <label>Query: <input id="r_query" value="python backend Bengaluru" size="60"></label>
+    <label>Top K: <input id="r_k" type="number" value="5" min="1" max="10"></label>
+    <button onclick="recommend()">Recommend</button>
+    <pre id="r_out"></pre>
+  </section>
+
+  <section>
+    <h2>Chat</h2>
+    <label>Message: <input id="c_msg" value="hello" size="60"></label>
+    <button onclick="chat()">Send</button>
+    <pre id="c_out"></pre>
+  </section>
+
+  <script>
+    const API = "http://localhost:8000";
+
+    async function translateText() {
+      const res = await fetch(API + "/translate", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          text: document.getElementById("t_text").value,
+          src: document.getElementById("t_src").value,
+          tgt: document.getElementById("t_tgt").value
+        })
+      });
+      document.getElementById("t_out").textContent = JSON.stringify(await res.json(), null, 2);
+    }
+
+    async function recommend() {
+      const res = await fetch(API + "/recommend", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({
+          query: document.getElementById("r_query").value,
+          top_k: parseInt(document.getElementById("r_k").value || "5")
+        })
+      });
+      document.getElementById("r_out").textContent = JSON.stringify(await res.json(), null, 2);
+    }
+
+    async function chat() {
+      const res = await fetch(API + "/chat", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ message: document.getElementById("c_msg").value })
+      });
+      document.getElementById("c_out").textContent = JSON.stringify(await res.json(), null, 2);
+    }
+  </script>
+</body>
+</html>
